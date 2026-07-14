@@ -1,13 +1,21 @@
+/*
+====================================================
+Nashville Housing Data Cleaning & Analysis
+Google BigQuery SQL
+====================================================
+*/
 
--- Verifying Uploaded Correct 
-select *
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
-limit 100;
+-- Verifying Uploaded Data
 
--- Populate Property Address Data 
-select propertyaddress
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
-where propertyaddress is null;
+SELECT *
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+LIMIT 100;
+
+-- Populate Missing Property Address Data 
+
+SELECT propertyaddress
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+WHERE propertyaddress is null;
 
 SELECT *
 FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
@@ -28,23 +36,23 @@ SET PropertyAddress = (
 )
 WHERE a.PropertyAddress IS NULL;
 
--- Breaking Property Address into Multiple Columns 
+-- Splitting Property Address into Multiple Columns 
 
-select propertyaddress
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
-limit 100;
+SELECT propertyaddress
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+LIMIT 100;
 
-select 
+SELECT 
 substring(propertyaddress, 1, STRPOS(propertyaddress, ',')-1) as Address,
 substring(propertyaddress, STRPOS(propertyaddress, ',')+1, length(propertyaddress)) as City
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`;
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`;
 
 alter table `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 add column PropertySplitAddress string;
 
-update `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+UPDATE `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 set PropertySplitAddress = substring(propertyaddress, 1, STRPOS(propertyaddress, ',')-1)
-where true;
+WHERE true;
 
 alter table `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 add column PropertySplitCity string;
@@ -53,22 +61,22 @@ update `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 set PropertySplitCity = substring(propertyaddress, STRPOS(propertyaddress, ',')+1, length(propertyaddress))
 where true;
 
-select *
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+SELECT *
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 
---Breaking Owner Address into Multple Columns 
+--Splitting Owner Address into Multple Columns 
 
-select OwnerAddress
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
-order by ParcelID
-limit 100;
+SELECT OwnerAddress
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+ORDER BY ParcelID
+LIMIT 100;
 
-select
+SELECT
 split(OwnerAddress, ',')[OFFSET(0)] as Address,
 split(OwnerAddress, ',')[OFFSET(1)] as City,
 split(OwnerAddress, ',')[OFFSET(2)] as State,
-from `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
-order by ParcelID
+FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
+ORDER BY ParcelID
 
 alter table `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 add column OwnerSplitAddress string;
@@ -91,7 +99,7 @@ update`fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
 set OwnerSplitState = split(OwnerAddress, ',')[OFFSET(2)]
 where true;
 
--- Changing SoldAsVacant Boolean to Yes or NO 
+-- Convert SoldAsVacant Boolean to Yes or NO 
 
 SELECT soldasvacant, COUNT(SoldAsVacant)
 FROM `fit-territory-457803-f3.Nashville_Data.Nashville_Housing`
@@ -118,7 +126,7 @@ set sold_as_vacant_status =  CASE
     END
 where true;
 
---Removing Duplicates with View
+--Removing Duplicates Using a View
 
 CREATE OR REPLACE VIEW `fit-territory-457803-f3.Nashville_Data.clean_housing` AS
 WITH RowNumCTE AS (
@@ -144,13 +152,15 @@ FROM `fit-territory-457803-f3.Nashville_Data.clean_housing`
 GROUP BY 1,2,3,4,5
 HAVING COUNT(*) > 1;
 
---pricing trends over time
+--Pricing Trends Over Time
+
 SELECT
   EXTRACT(YEAR FROM SaleDate) AS sale_year,
   AVG(SalePrice) AS avg_sale_price
 FROM `fit-territory-457803-f3.Nashville_Data.clean_housing`
 GROUP BY sale_year
 ORDER BY sale_year;
+
 -- Number of Sales by Year
 
 SELECT
@@ -160,7 +170,7 @@ FROM `fit-territory-457803-f3.Nashville_Data.clean_housing`
 GROUP BY sale_year
 ORDER BY sale_year;
 
--- Average sale Price by City 
+-- Average Sale Price by City 
 
 SELECT
   PropertySplitCity,
@@ -171,7 +181,7 @@ GROUP BY PropertySplitCity
 HAVING COUNT(*) > 50
 ORDER BY avg_sale_price DESC;
 
--- Vacant vs non Vacant 
+-- Vacant vs Non-Vacant Properties
 
 SELECT
   sold_as_vacant_status,
@@ -179,7 +189,7 @@ SELECT
 FROM `fit-territory-457803-f3.Nashville_Data.clean_housing`
 GROUP BY sold_as_vacant_status;
 
---Top owners
+--Top Property Owners
 
 SELECT
   OwnerName,
