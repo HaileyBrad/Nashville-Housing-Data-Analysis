@@ -14,8 +14,8 @@ To answer this question, I cleaned housing transaction data, explored pricing tr
 
 ## Tools Used
 
-- Google BigQuery (SQL)
-- Tableau Public
+- SQL
+- Tableau 
 - Data Cleaning & Transformation
 - Data Visualization
 
