@@ -78,7 +78,7 @@ The original dataset contained 56,478 records. After identifying and removing du
 
 **Interactive Dashboard:**
 
-Link to Tableau Dashbhttps://public.tableau.com/shared/TM2JKMBP3?:display_count=n&:origin=viz_share_link
+Link to Tableau Dashboard https://public.tableau.com/shared/TM2JKMBP3?:display_count=n&:origin=viz_share_link
 
 ### Dashboard Preview
 
