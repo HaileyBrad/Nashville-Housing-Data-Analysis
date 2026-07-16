@@ -239,10 +239,11 @@ Areas with higher sales volume may benefit from targeted marketing campaigns, wh
 ---
 
 ## Repository Contents
-- 
-- `Nashville_Housing_Cleaning.sql` — SQL data cleaning and analysis queries
-- `dashboard_screenshot.png` — Dashboard preview image
-- `README.md` — Project documentation
+
+- `Nashville_Housing_Data_Raw.csv` — Original Nashville housing dataset prior to cleaning and transformation.
+- `Nashville_Housing_Data_Cleaned.csv` — Cleaned dataset after addressing missing values, standardizing fields, and removing duplicate records.
+- `Nashville_Housing_SQL.sql` — SQL queries used for data cleaning, transformation, and exploratory analysis in Google BigQuery.
+- `Tableau_Screenshot_Dashboard.png` — Preview image of the interactive Tableau dashboard.
 
 ---
 
