@@ -82,7 +82,7 @@ Link to Tableau Dashboard https://public.tableau.com/shared/TM2JKMBP3?:display_c
 
 ### Dashboard Preview
 
-Nashville Housing Dashboard <img width="1696" height="794" alt="Tableau_Nashville_Residential_Housing_Dashboard" src="https://github.com/user-attachments/assets/031c1891-d572-4881-b59a-dbaed2a4cf7d" />
+Nashville Residential Housing Dashboard <img width="1696" height="794" alt="Tableau_Nashville_Residential_Housing_Dashboard" src="https://github.com/user-attachments/assets/031c1891-d572-4881-b59a-dbaed2a4cf7d" />
 
 ---
 
