@@ -141,9 +141,32 @@ Different land-use classifications exhibited notable differences in average sale
 Properties sold as vacant generally had lower average sale prices than non-vacant properties.
 
 ---
+## Business Recommendations
+
+Based on the analysis, the following recommendations could help real estate professionals, investors, and property developers make more informed decisions:
+
+### 1. Focus Investment in High-Value Markets
+Cities with consistently higher average sale prices may present stronger opportunities for investment and development. Real estate firms should prioritize these areas when evaluating future projects.
+
+### 2. Monitor Pricing Trends Over Time
+The upward trend in housing prices suggests a growing market. Investors and developers should regularly monitor pricing trends to identify favorable buying and selling periods.
+
+### 3. Consider Property Characteristics in Valuation
+The analysis shows that property characteristics, such as the number of bedrooms, influence sale price. Property improvements that increase livable space may help maximize property value.
+
+### 4. Evaluate Land Use Before Acquisition
+Different land-use classifications exhibit significant differences in average sale prices and total property values. Understanding land-use patterns can support more effective investment decisions.
+
+### 5. Review Vacant Property Opportunities
+Properties sold as vacant generally had lower average sale prices than occupied properties. Investors may find opportunities to purchase vacant properties at lower costs and increase value through renovation or redevelopment.
+
+### 6. Use Geographic Trends to Guide Marketing Strategies
+Areas with higher sales volume may benefit from targeted marketing campaigns, while lower-volume areas may require different sales strategies to attract buyers.
+
+---
 
 ## Repository Contents
-
+- 
 - `Nashville_Housing_Cleaning.sql` — SQL data cleaning and analysis queries
 - `dashboard_screenshot.png` — Dashboard preview image
 - `README.md` — Project documentation
