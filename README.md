@@ -20,17 +20,84 @@ To answer this question, I cleaned housing transaction data, explored pricing tr
 - Data Visualization
 
 ---
+## Dataset Structure
+
+The Nashville Housing dataset contains property transaction records and property characteristics used to analyze housing market trends between 2013 and 2020.
+
+| Column | Data Type |
+|----------|----------|
+| UniqueID | INTEGER |
+| ParcelID | STRING |
+| LandUse | STRING |
+| PropertyAddress | STRING |
+| SaleDate | DATE |
+| SalePrice | INTEGER |
+| LegalReference | STRING |
+| SoldAsVacant | BOOLEAN |
+| OwnerName | STRING |
+| OwnerAddress | STRING |
+| Acreage | FLOAT |
+| TaxDistrict | STRING |
+| LandValue | INTEGER |
+| BuildingValue | INTEGER |
+| TotalValue | INTEGER |
+| YearBuilt | INTEGER |
+| Bedrooms | INTEGER |
+| FullBath | INTEGER |
+| HalfBath | INTEGER |
+
+### Columns Created During Data Cleaning
+
+| Column | Purpose |
+|----------|----------|
+| PropertySplitAddress | Extracted street address from PropertyAddress |
+| PropertySplitCity | Extracted city from PropertyAddress |
+| OwnerSplitAddress | Extracted street address from OwnerAddress |
+| OwnerSplitCity | Extracted city from OwnerAddress |
+| OwnerSplitState | Extracted state from OwnerAddress |
+| sold_as_vacant_status | Converted Boolean values into Yes/No categories |
+| row_num | Used to identify duplicate records during data cleaning |
+
+---
+
+## Data Summary
+
+| Metric | Count |
+|----------|----------|
+| Original Records | 56,478 |
+| Cleaned Records | 56,374 |
+| Duplicate Records Removed | 104 |
+
+### Data Cleaning Results
+
+The original dataset contained 56,478 records. After identifying and removing duplicate transactions using a ROW_NUMBER() window function and a deduplicated view, the final cleaned dataset contained 56,374 records, resulting with the removal of 104 duplicate records.
+
+---
 
 ## Tableau Dashboard
 
 **Interactive Dashboard:**
 
-https://public.tableau.com/shared/TM2JKMBP3?:display_count=n&:origin=viz_share_link
+Link to Tableau Dashbhttps://public.tableau.com/shared/TM2JKMBP3?:display_count=n&:origin=viz_share_link
 
 ### Dashboard Preview
 
-![Nashville Housing Dashboard] <img width="1696" height="794" alt="Tableau_Nashville_Residential_Housing_Dashboard" src="https://github.com/user-attachments/assets/031c1891-d572-4881-b59a-dbaed2a4cf7d" />
+Nashville Housing Dashboard <img width="1696" height="794" alt="Tableau_Nashville_Residential_Housing_Dashboard" src="https://github.com/user-attachments/assets/031c1891-d572-4881-b59a-dbaed2a4cf7d" />
 
+---
+
+## SQL Techniques Demonstrated
+
+- JOINs
+- CASE Statements
+- Window Functions (ROW_NUMBER)
+- Common Table Expressions (CTEs)
+- Data Type Standardization
+- Missing Value Imputation
+- String Manipulation
+- Aggregate Functions
+- GROUP BY and HAVING Clauses
+- Data Deduplication
 
 ---
 
